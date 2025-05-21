@@ -1,3 +1,6 @@
+venv/
+__pycache__/
+
 .env
 backend/credentials.json
 oauth_client_secret.json

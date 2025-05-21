@@ -9,7 +9,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # For dev; restrict in prod
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -23,4 +23,5 @@ def read_root():
 async def transcribe(request: Request):
     data = await request.json()
     transcript = data.get("transcript")
-    return {"status": "ok", "received": transcript}
+    print(f"[VOICE BLOCK]: {transcript}")
+    return {"status": "received", "text": transcript}
