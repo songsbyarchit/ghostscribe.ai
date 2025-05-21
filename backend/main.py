@@ -15,6 +15,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+edit_history = []
+MAX_HISTORY = 10
+
+def remember_edit(action_type, content, location):
+    if len(edit_history) >= MAX_HISTORY:
+        edit_history.pop(0)
+    edit_history.append({
+        "action": action_type,
+        "content": content,
+        "location": location
+    })
+
 @app.get("/")
 def read_root():
     return {"message": "Ghostscribe API is live"}
